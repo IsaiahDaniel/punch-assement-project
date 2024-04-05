@@ -28,8 +28,6 @@ import JourneyImgOne from "../assets/images/journey-img-1.png";
 import JourneyImgTwo from "../assets/images/journey-img-2.png";
 import JourneyImgThree from "../assets/images/journey-img-3.png";
 
-import SliderOne from "../assets/images/slider-1.png";
-
 import { COURSES, IT_CARD_DATA, TABS, TabType, VideoTABS } from '../constants/app.constants';
 import Card from '../components/Card';
 import Footer from '../components/Footer';
@@ -37,7 +35,7 @@ import ImageSlider from '../components/Slider';
 
 const Landing = () => {
 
-  const [selectedTab, setSelectedTab] = useState<TabType>("IT & Development");
+  const [selectedTab, setSelectedTab] = useState("IT & Development");
 
   return (
     <main>

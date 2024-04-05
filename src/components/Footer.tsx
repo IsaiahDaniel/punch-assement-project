@@ -41,8 +41,8 @@ const Footer = (props: Props) => {
                         <div className="mr-5">
                             <p className="text-[#C6C4C4]">LINKS AND REDIRECTS</p>
                             <div className="flex items-center space-x-5 mt-5">
-                                <Button classNames="bg-[#292B34] text-white text-xs rounded-md">Hire now</Button>
-                                <Button classNames="bg-[#292B34] text-white text-xs rounded-md">Apply now</Button>
+                                <Button classNames="bg-[#292B34] text-xs rounded-md">Hire now</Button>
+                                <Button classNames="bg-[#292B34] text-xs rounded-md">Apply now</Button>
                             </div>
                         </div>
 

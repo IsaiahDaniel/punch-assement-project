@@ -17,18 +17,22 @@ import SliceOneIcon from "../assets/icons/slice-1.svg";
 
 
 import VideoTagIcon from "../assets/icons/video-tag-icon.svg";
+import VideoTagFocus from "../assets/icons/videoTagFocus.svg";
 
 import JasonImage from "../assets/images/jason.png";
 import PersonRounded from "../assets/images/portrait-charming.png";
 
 import RoundedTimesOne from "../assets/images/rounded-times-1.png";
 import RoundedTimesTwo from "../assets/images/rounded-times-2.png";
+import RoundedTimesThree from "../assets/images/rounded-times-3.png";
+import RoundedTimesFour from "../assets/images/rounded-times-4.png";
+import RoundedTimesFive from "../assets/images/rounded-times-5.png";
 
 import JourneyImgOne from "../assets/images/journey-img-1.png";
 import JourneyImgTwo from "../assets/images/journey-img-2.png";
 import JourneyImgThree from "../assets/images/journey-img-3.png";
 
-import { COURSES, IT_CARD_DATA, TABS, TabType, VideoTABS } from '../constants/app.constants';
+import { COURSES, IT_CARD_DATA, IT_CARD_DATA_TWO, TABS, TabType, VideoTABS } from '../constants/app.constants';
 import Card from '../components/Card';
 import Footer from '../components/Footer';
 import ImageSlider from '../components/Slider';
@@ -36,6 +40,7 @@ import ImageSlider from '../components/Slider';
 const Landing = () => {
 
   const [selectedTab, setSelectedTab] = useState("IT & Development");
+  const [videoIndex, setVideoIndex] = useState<number | null>(0);
 
   return (
     <main>
@@ -111,17 +116,21 @@ const Landing = () => {
           </div>
 
           <div className='w-1/2'>
-            <h2>IT & Development</h2>
-            <div className="flex items-end justify-end">
-              {IT_CARD_DATA.map((item, index) => (
-                <Card key={index}>
+            <Card>
+              <h2 className='text-xs mb-3'>IT & Development</h2>
+              <div className="flex items-end justify-between">
+                {IT_CARD_DATA.map((item, index) => (
                   <div className="flex-col-center text-center">
-                    <img src={item.icon} />
-                    <p className='text-xs'>{item.text}</p>
+                    <div className='w-[50px]'>
+                      <img src={item.icon} className='object-contain' />
+                    </div>
+                    <div className='mt-3'>
+                      <p className='text-xs'>{item.text}</p>
+                    </div>
                   </div>
-                </Card>
-              ))}
-            </div>
+                ))}
+              </div>
+            </Card>
           </div>
         </div>
 
@@ -152,17 +161,21 @@ const Landing = () => {
           </div>
 
           <div className='w-1/2'>
-            <h2>Design & Creative</h2>
-            <div className="flex items-end justify-end">
-              {IT_CARD_DATA.map((item, index) => (
-                <Card key={index}>
+            <Card>
+              <h2 className='text-xs mb-3'>Design & Creative</h2>
+              <div className="flex items-end justify-between">
+                {IT_CARD_DATA_TWO.map((item, index) => (
                   <div className="flex-col-center text-center">
-                    <img src={item.icon} />
-                    <p className='text-xs'>{item.text}</p>
+                    <div className='w-[50px] block'>
+                      <img src={item.icon} className='object-contain' />
+                    </div>
+                    <div className='mt-3'>
+                      <p className='text-xs'>{item.text}</p>
+                    </div>
                   </div>
-                </Card>
-              ))}
-            </div>
+                ))}
+              </div>
+            </Card>
             <p className='mt-10'> <span className='font-bold'>30 more</span> to explore</p>
           </div>
         </div>
@@ -221,12 +234,29 @@ const Landing = () => {
 
           <div className="flex justify-between">
             <div className='w-1/2 mr-16'>
-              {VideoTABS.map(video => (
-                <div className='border border-[#F0F0F0] p-2 flex items-center my-3 cursor-pointer'>
-                  <img src={VideoTagIcon} className='mr-3' />
-                  <p><span className='font-bold'>{video.step}: </span>{video.text}</p>
+              {VideoTABS.map((video, index) => (
+                <div className='border border-[#F0F0F0] my-2'>
+                  <div 
+                    onMouseEnter={() => setVideoIndex(index)} 
+                    onMouseLeave={() => setVideoIndex(null)}
+                    className='p-2 flex items-center my-3 cursor-pointer'
+                  >
+                    <img src={ videoIndex == index ? VideoTagFocus : VideoTagIcon} className='mr-3' />
+                    <p><span className='font-bold'>{video.step}: </span>{video.text}</p>
+                  </div>
+                  <>
+                    { videoIndex == index && (
+                      <div className='shadow p-3 bg-white cursor-pointer'>
+                        <p>{video.content}</p>
+                      </div>
+                    ) }
+                  </>
                 </div>
               ))}
+
+              
+
+
             </div>
 
             <div className='w-1/2'>
@@ -236,9 +266,9 @@ const Landing = () => {
                 <div className='bg-[#8BA4FD] px-3 py-5 rounded-md space-y-6'>
                   <img src={RoundedTimesOne} />
                   <img src={RoundedTimesTwo} />
-                  <img src={RoundedTimesOne} />
-                  <img src={RoundedTimesOne} />
-                  <img src={RoundedTimesOne} />
+                  <img src={RoundedTimesThree} />
+                  <img src={RoundedTimesFour} />
+                  <img src={RoundedTimesFive} />
                 </div>
 
                 <div className='space-y-8 mt-3 ml-5'>
@@ -281,7 +311,7 @@ const Landing = () => {
           <div className='w-1/2'>
             <ImageSlider />
           </div>
-          
+
 
         </div>
       </section>
@@ -294,8 +324,8 @@ const Landing = () => {
             <h2 className='border-r border-r-[#D6D6D6] p-5 px-14'>General</h2>
             <p className='text-center px-5 w-full'>I want to work part-time, is that possible</p>
           </div>
-          <div>
-            <p className='text-center p-5 px-5 w-full'>How long are the average projects?</p>
+          <div className='p-5'>
+            <p className='text-center px-5 w-full'>How does the payment works?</p>
           </div>
           <div>
             <p className='text-center p-5 px-5 w-full'>How does the payment works?</p>

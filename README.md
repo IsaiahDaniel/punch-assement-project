@@ -14,5 +14,7 @@ How to Run this project
     npm run dev
 ```
 
-project-live-url
+project-live-url:
+
+https://punch-assement-project-g46c.vercel.app/
 
